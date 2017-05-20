@@ -1,0 +1,162 @@
+#####git
+#####dos命令行
+
+```
+
+1：ipconfig 查看本机的ip信息
+2：ipconfig /all 查看本机ip信息
+3：cls 清屏
+4：exit 退出
+5：D:  直接进入指定磁盘目录
+6：dir 查看当前位置下的所有目录文件
+7：cd 文件夹名字(不要是中文)   进入到指定的文件夹
+8：cd ../ 返回上级目录
+9：cd ./ 返回当前目录
+10：cd / 返回根目录
+11：ls -al查看所有文件
+12:echo 编辑文件内容 
+写法（echo 编辑的内容 >index.txt）
+（echo 编辑的内容 >>index.txt）一个大于是写入 两个大于号是追加内容
+15：cat 查看這个文件的里面的内容
+16：rm -rf 文件名  删除文件名
+17：vi 文件名 调出vim编辑器
+{ 
+   > i:编辑内容
+  > esc+冒号 ：编辑wq保存退出
+  > i/o/u 任意一个进入插入编辑状态
+  >  esc退出编辑状态  
+  >  shift+: 进入插入编辑 	
+  >  q不保存并退出 
+  >  q!强制退出
+  >   wq保存并退出
+}
+
+
+```
+#####git 命令
+> 工作区 ---> 暂存区/缓存区/过渡区--->历史区-->github 展示的是历史区的内容
+```
+> git --version;查看git的版本，知道git安装是否成功
+> 
+1：git config --list 查看是否配置了git（会在最后两行提示用户名 邮箱）
+
+2：git配置  git log 查看配置
+git config --global user.name ''你的用户名''
+git config --global user.email ''你的邮箱''
+
+3：mkdir 目录名字  创建目录名字
+4：mkdir test-git && cd test-git （即创建目录又进入）创建文件名 并且进入這个文件
+5：git init 初始化一个git仓库
+6：touch （文件名） 新建文件
+7: git status 查看git状态
+ > 红色表示没有在暂存区中
+ > 绿色表示已经在暂存区
+
+8：把本地仓库所有内容推送到远程仓库
+（1）git add .（.代表所有文件 也可以代表所有文件）（工作区到暂存区）
+（2）git commit -m'注释内容'（暂存区加到历史区）（注释内容是为什么要提交）
+（3）git push origin master
+9：> git log 日志(查看历史)
+   > git log -- oneline 查看版本号的前7位数还有注释内容
+10：
+> git diff  工作区跟暂存区比较
+> git diff --cached 暂存区与历史区比较
+> git diff master 工作区跟历史比较
+11：
+> git checkout +(文件名)  暂存区中覆盖工作区
+> git reset --hard id  id是版本号 选择某个版本进行回滚操作
+12：创建gitignore必须在add之前创建
+$ touch .gitignore 创建一个文件
+$ echo .DS_Store
+$ echo node_modules
+$ echo .idea
+13：git reset HEAD . 删除上一次添加暂存区的内容
+14：git reflog 查看所有历史版本
+
+```
+#####分支
+```
+1：git branch 查看分支
+2：git branch +分支名   创建分支
+创建的分支和master一样
+3：git checkout +分支名  切换分支
+4：git branch -D+分支名  删除分支
+5：git checkout -b +分支名   创建并切换分支
+6：将内容提交到某个分支上，默认我们的代码放在工作区上，不属于任何分支，只有提交到某个分支上，此文件才属于特定的分支
+7：fast-forward 
+8:git merge +分支名  合并分支名
+9：支持提交过的文件（一步提交）git commit -a -m '注释内容'
+
+10：conflict 合并多个分支时，可能合并的内容会产生冲突，手动解决
+ > 1: 创建分支 并且切换git checkout -b +分支名   创建并切换分支
+ > 2：vi index.js 修改内容
+ > 3：提交 git commit -a -m '注释内容'
+ > 4：合并 git merge +分支名  合并分支名
+ > 5: 手动删除修改 （index.js里面的箭头》》》》还有heade之类的文字）
+ > 6：cat index.js查看
+ > 7：git commit -a -m '注释内容' 再次提交
+11：git pull origin master 获取最新代码
+
+```
+#####远程提交
+```
+1：线上有，把线上的拉下来，在提交代码
+2：线上没有，直接提交上去
+1：echo "# 2017.05.20" > README.md （创建README.md文件 ）；
+2：git init  初始化仓库
+3:touch .gitignore  
+4:vi .gitignore  编辑或略的文件
+5：git add . 提交到暂存区
+6: git commit -m 提交到历史区
+7:git remote -v 查看远程仓库
+8：git remote add origin https://github.com/boweiling/2017.05.20.git 
+ > origin  代表地址origin ：https://github.com/boweiling/2017.05.20.git 
+9:git push origin master 把分支提交上去 
+```
+```
+> 线上比线下版本新
+> 线上线下两个版本不一样
+```
+#####部署git静态网页
+```
+> 1:将网页通过git网址访问（只能放静态页，不能放置server）
+> 第一步：
+  > ：需要一个特定的分支 （gh-pages）
+ git checkout -b +分支名   创建并切换分支
+ > ：将代码提交到這个分支上 
+ git add .  git commit -m" git push origin gh-pages
+>  > ：在git hup中的setting上找到這个网址
+> 
+```
+####fork
+```
+> 叉子 ，将别人的代码当前的状态，克隆一份放在自己的仓库上，一个项目只能fork一次，我的代码不会更新
+> 
+```
+
+组长提交信息
+```
+
+git clone 自己的项目地址
+添加内容
+git add .
+git commit -m 'team xxx'
+git push origin master
+组员给提交给自己
+
+git clone 自己的项目地址
+添加内容
+git add .
+git commit -m 'team xxx'
+git remote add leader 组长的地址（建立一次即可）
+git pull leader master
+git push origin master
+组长再次提交给老师
+
+将自己的内容放进去
+git add .
+git commit -m 'team xxx'
+git remote add teacher https://github.com/zhufengzhufeng/2017node02_homework
+git pull teacher master
+git push origin master
+```
