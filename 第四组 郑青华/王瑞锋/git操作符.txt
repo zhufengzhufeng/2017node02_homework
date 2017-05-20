@@ -1,0 +1,124 @@
+    文件从本地提交到别人仓库
+1）忽略文件：1>touch .gittgnore(创建忽略文件夹，里边的文件名里的内容都会忽略掉)   2>vi .gitignore->vi .gitignore->i->写忽略的文件夹名称.XXX ->Esc->:wq（此过程相当于在文件夹里插入内容）PS:如果需要此步，要写在add之前
+
+1）从工作区提交到暂存区时选择所有文件
+	git add .
+2)第一次使用会git 会在commit的时候 配置email 和name
+	
+
+3)从暂存区加入历史区
+	git commit -m "addthis"(描述)
+
+
+4）查看与远程仓库是否建立连接（如果没有连接执行下一步）
+	git remote -v 
+
+5）和远程仓库建立连接（origin->自己起的名字  和 https://github.com/wangruifeng961221/2017node02_work.git（地址为远程仓库的地址）  都可以访问）
+
+
+ git remote add origin https://github.com/wangruifeng961221/2017node02_work.git
+
+
+6）从历史区到远程服务器（origin 本地）
+	git push origin master
+
+
+四) 拉区最新代码（将线上最新代码拉取到master分支上   origin->自己起的名字，同第五步的origin） 当内容有改动时，先写这句，在写上面那句
+	git pull origin master
+
+
+
+
+
+
+
+文件从本地上传到自己仓库
+
+1）从工作区提交到暂存区时选择所有文件
+	git add .
+2)第一次使用会git 会在commit的时候 配置email 和name
+	
+
+2）忽略文件：1>touch .gittgnore(创建忽略文件夹，里边的文件名里的内容都会忽略掉)   2>vi .gitignore->vi .gitignore->i->写忽略的文件夹名称.XXX ->Esc->:wq（此过程相当于在文件夹里插入内容）
+
+3)从暂存区加入历史仓库建立
+	git commit -m "addthis"(描述)
+
+
+4）与自己仓库建立联系
+git remote add origin https://github.com/wangruifeng961221/2017node02_work.git
+
+4)从历史区到远程服务器（origin 本地）
+	git push origin master
+
+
+
+
+
+
+把别人仓库clone到本地
+方式一：
+先fork 到自己本地，在git clone 
+
+以后再用就直接先pull 在push
+
+
+克隆：git clone +地址
+
+
+
+
+1.初始化仓库
+$ git init         ls -al查看所有文件  包括隐藏文件
+
+2.创建文件
+$ touch index.txt
+
+3.查看文件内容
+cat index.txt
+
+4.插入内容
+vi index.txt
+i  插入内容  Esc  :wq 保存并退出
+
+5.查看git状态
+红色表示没有在暂存区在中  绿色表示在暂存区
+$ git status
+
+
+创建分支
+git branch 分支名
+
+切换到分支a
+git checkout a
+
+
+
+
+部署git静态网页
+
+将网页通过git网址访问 (只能放静态网页，不能放置server)
+1.需要一个特定的分支（gh-pages 此名字不能改）   git checkout -b gh-pages
+
+2.将代码提交到这个分支上    
+$ git add .
+
+$ git commit -m'static'
+
+（3）建立本地和远程的连接 (git remote add 别名 地址)
+$ git remote add origin https://github.com/wangruifeng961221/2017node02_work.git
+
+
+3.推送到github上,将gh-pages提交到这个分支上
+
+$ git push origin gh-pages
+
+
+4.在github中的setting上可以找到这个网址
+
+
+
+
+
+
+
