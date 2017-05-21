@@ -1,0 +1,158 @@
+
+   一、git
+   
+       1.mkdir test-git && cd test-git  创建一个文件夹并且进入到文件夹
+       2.git init 初始化
+       3.ls -al 查看所有文件  包括隐藏文件
+       4.touch 文件名  创建文件
+       5.cat 文件名 查看文件的内容
+       6.rm 删除文件  不参删除文件夹
+            rm -rf 文件 递归制止删除
+       7.在git命令下
+            vi 文件名 进入vim 编辑器
+            按 i, o, u, 进入编辑状态
+            按esc
+            按shift  :
+              按: q:退出不保存
+              q!: 强制退出
+              wq:退出并保存
+       8.hostory > 1.txt  将历史记录存在1.txt
+       9.git ls 查看当前的文件  git ls -al 查看所有的
+       10.git status   查看 git 状态
+           文件名 是红色的  代表是没有加到 暂存区去
+           绿色表示是在暂存区
+   
+       11.git commit -m"注释"
+       12.git add ./-A  (文件)
+       13.git log 提交记录信息  git  log --oneline 一行显示
+       14.git reflog 查看所有的历史操作
+   
+       15.不同区代码的比较
+           git diff  工作区和暂存区比较
+           git diff --cached /(--staged) 暂存区和历史区比较
+           git diff master  工作区和版本库
+       16.撤回文件 #
+   
+       17.先从缓存区撤销,缓存区无内容，从历史区域撤销
+           git checkout "文件名"
+           git checkout .  从暂存区中覆盖掉工作区的内容
+   
+       18.选择某个版本号id 恢复
+           git reset --hard id 最少7位
+   
+       19.删除上一次提交到暂存区的文件 只删除刚提交的 不删除以前的
+           git reset head 文件名
+           git reset head .
+       20. .gitignore 忽略一些文件名
+           .idea
+           node_modules
+       21.创建分支
+           git  branch          查看分支  前面 * 是在当前的分支
+   
+           git branch  分支名    建立分支名
+   
+           git branch 分支名 -D   删除分支
+   
+           git checkout 分支名   切换分支
+   
+           git checkout -b 分支名   创建分支并且切换到分支下
+   
+           fast-forward 快速转播
+   
+        22.git merge 分支名  将主分支 指向 其它分支
+   
+           git commit -a -m 'ok' 对于提交过的 一次提交到历史区去
+           conflict
+           合并多个分支时可能合并的内容会产生冲突
+           手动解决冲突 提交到最新
+        23.创建 有内空的文件
+           echo '内容' > 文件名  这个可以覆盖以前的内容
+           echo '内容' >> 文件名  追加内容到后面
+   
+        24.git push origin master 可以设置为默认的  git push origin master -u  设置默认的           下次就：git push
+   
+   二、部署git  静态网页
+   
+       1.需要一个特定的分支 gh-pages
+       2.将代码提交到这个分支上
+       3.推送到github上 将gh-pages提交到这个分支上
+       4. 在settings 上找 gitHub pages 这个网址
+   
+   
+         为避免冲突 建在各自的分支上
+   
+   三、git 多人协作
+       1.组长
+            fork  叉子
+            git remote add 链接地址  别名（本地文件夹名）
+            组长提交信息
+            git clone 自己的项目地址
+            添加内容
+            git add .
+            git commit -m"信息"
+            git push origin
+            进入仓库 pull request
+   
+       2.组员：
+            fork 组长的
+            git clone 自己的项目地址
+            添加内容
+            git add .
+            git commit -m"信息"
+   
+            git remote add leader 组长的地址（建立一下）
+            git pull leader master
+            git push origin master
+   
+            进入仓库 pull request
+   
+   
+   四、前端的模块化
+   
+   闭包
+   
+   单例 有且只有一份 不能完全解决命名冲突 调用时
+   
+   requirejs AMD依赖前置，seajs CMD就近依赖
+   
+   commonjs 规范 是node模块的实现 module.exports
+   
+   node 特点
+   
+   异步IO  （定时器，回调函数）
+   单线程 其它语言
+   
+   进程是包含线程的 node一个进程只能开一个线程
+   
+   前端 的全局变量： 是window 服务端是：global
+   全局对象 在当前文件夹下可以直接使用的都是全局对象
+   全局对象 global上的属性    五个特殊形参
+   node中没有window 属性
+   
+   node 中的this 是{}空对象 不是global
+   
+   -function(){
+       console.log(this) //this是global
+   }
+   
+   setTimeout(function(){
+       console.log(this);//this不是global
+   },100)
+   
+   var a=100;//var 不能直接将内容挂载在global 上
+   //写代码不要丢掉 let const 以后不会变的用const
+   const arr=[];//只要内存地址不变是可以改变内容的
+         arr.push('a');
+         同一个‘作用域{}’下变量不能声明两次
+   console.log(global.a)
+   
+   function a(a){
+       return function (b){
+           return a  b;
+        }
+   }
+   
+   简写:
+   let a=a=>b=>a  b   //
+Contact GitHub API Training Shop Blog About
+© 2017 GitHub, Inc. Terms Privacy Security S
