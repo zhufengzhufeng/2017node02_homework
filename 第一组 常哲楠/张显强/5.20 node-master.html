@@ -1,0 +1,527 @@
+<!DOCTYPE html><html><head><title>5.20 node-master</title><meta charset='utf-8'><link href='https://dn-maxiang.qbox.me/res-min/themes/marxico.css' rel='stylesheet'><style>.note-content , .note-content  div {font-size: 20px;}
+
+.note-content  {font-family: 'Helvetica Neue', Arial, 'Hiragino Sans GB', STHeiti, 'Microsoft YaHei', 'WenQuanYi Micro Hei', SimSun, Song, sans-serif;}
+
+.note-content  {background: #fefefe; max-width: 1000px; margin: 0 auto; padding: 10px 60px; border: 1px solid #CECECE;}
+.note-content .bg {top: 0; left: 0; display: block; content: ""; position: fixed; width: 100%; height: 100%; z-index: -1; background: #FFF2F4 url('https://source.pixiv.net/common/images/bg/uchu01.jpg') repeat;}
+.note-content .top {height: 100px; margin-bottom: -30px; width: 100%; border-bottom: 1px solid #CECECE;}
+.note-content .top:before {display: block; width: 100%; position: absolute; top: 0; left: 0; content: "Js笔记"; height: 100px; line-height: 100px; background: #fff; color: #258fb8; font-size: 30px; text-align: center;}
+.note-content .top:after {content: ""; position: absolute; z-index: 1; background-color: #fff; height: 50px; border-bottom: 1px solid #CECECE; width: 1000px; top: 100px; left: 50%; margin-left: -500px; background: #FFF2F4 url('https://source.pixiv.net/common/images/bg/uchu01.jpg') repeat;}
+.note-content h1 {padding-top: 20px; padding-bottom: 30px; color: black; border-bottom: 2px solid #000; text-align: center;}
+.note-content hr {margin: 30px auto 0; border-bottom: 1px solid #111;}
+.note-content .hid {background-color: black; color: black; padding: 0 5px;}
+.note-content .hid:hover {color: #fff;}
+.note-content .bom {position: relative; width: 1000px; margin-left: -500px; text-align: center; left: 50%; top: 90px; background-color: #DDD; height: 40px; line-height: 40px;}
+.note-content .bom a {text-align: center;}
+.note-content .bom a:before {width: 30px; height: 33px; background: url('http://www.easyicon.net/api/resizeApi.php?id=1188783&size=32') no-repeat; content: ""; display: inline-block; margin-bottom: -10px;}
+</style></head><body><div id='preview-contents' class='note-content'>
+                        
+                    
+
+<div class="top"></div>
+
+<div class="bg"></div>
+
+
+
+<h1 id="520-node-master">5.20 node-master</h1>
+
+<div><div class="toc"><div class="toc">
+<ul>
+<li><a href="#520-node-master">5.20 node-master</a><ul>
+<li><a href="#git使用">git使用</a><ul>
+<li><a href="#cmd-命令">cmd 命令</a></li>
+</ul>
+</li>
+<li><a href="#git-命令">git 命令</a><ul>
+<li><a href="#告诉git你是谁">告诉git你是谁</a></li>
+<li><a href="#创建目录文件夹">创建目录/文件夹</a></li>
+<li><a href="#cd-进入目录">cd 进入目录</a></li>
+<li><a href="#初始化git仓库">初始化git仓库</a></li>
+<li><a href="#创建文件">创建文件</a></li>
+<li><a href="#查看文件内容">查看文件内容</a></li>
+<li><a href="#vi常用命令">vi常用命令</a></li>
+<li><a href="#查看git状态">查看git状态</a></li>
+<li><a href="#加入暂存区">加入暂存区</a></li>
+<li><a href="#加入历史区">加入历史区</a></li>
+<li><a href="#查看历史日志">查看历史/日志</a></li>
+<li><a href="#webstorm破解码">webstorm破解码</a></li>
+<li><a href="#git-diff">git diff</a></li>
+<li><a href="#从暂存区中覆盖掉工作区">从暂存区中覆盖掉工作区</a></li>
+<li><a href="#从历史区中覆盖掉工作区">从历史区中覆盖掉工作区</a></li>
+<li><a href="#查看所有历史版本日志">查看所有历史版本/日志</a></li>
+<li><a href="#创建gitignore必须在add之前创建">创建gitignore必须在add之前创建</a></li>
+<li><a href="#删除上一次添加暂存区的内容">删除上一次添加暂存区的内容</a></li>
+<li><a href="#分支">分支</a></li>
+<li><a href="#创建并切换分支">创建并切换分支</a></li>
+<li><a href="#将内容提交到某个分支上">将内容提交到某个分支上</a><ul>
+<li><a href="#fast-forward">fast-forward</a></li>
+</ul>
+</li>
+<li><a href="#支持提交过的文件-可以一步到位">支持提交过的文件 可以一步到位</a><ul>
+<li><a href="#conflict">conflict</a></li>
+</ul>
+</li>
+<li><a href="#创建有内容的文件">创建有内容的文件</a></li>
+</ul>
+</li>
+<li><a href="#部署静态页面">部署静态页面</a><ul>
+<li><a href="#提交到远程仓库">提交到远程仓库</a><ul>
+<li><a href="#建立文件">建立文件</a></li>
+<li><a href="#提交到历史区">提交到历史区</a></li>
+</ul>
+</li>
+<li><a href="#查看远程仓库">查看远程仓库</a></li>
+<li><a href="#本地和线上版本不一致">本地和线上版本不一致</a></li>
+<li><a href="#拉取最代码">拉取最代码</a></li>
+<li><a href="#部署git静态网页">部署git静态网页</a><ul>
+<li><a href="#第一步">第一步</a></li>
+</ul>
+</li>
+<li><a href="#代码合并请求管理提交的笔记">代码合并请求管理提交的笔记</a><ul>
+<li><a href="#fork">fork</a></li>
+<li><a href="#clone">clone</a></li>
+</ul>
+</li>
+<li><a href="#组长提交信息">组长提交信息</a></li>
+<li><a href="#组员给提交给自己">组员给提交给自己</a></li>
+<li><a href="#组长再次提交给老师">组长再次提交给老师</a><ul>
+<li><a href="#插件链接">插件链接</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<h2 id="git使用">git使用</h2>
+
+<hr>
+
+<h3 id="cmd-命令">cmd 命令</h3>
+
+<p>进入桌面</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs bash"><span class="hljs-built_in">cd</span> Desktop<br></code></pre>
+
+<p>创建aaa这个文件夹</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs dos"><span class="hljs-built_in">md</span> aaa <br></code></pre>
+
+<p>创建bbb这个文件夹</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs arduino"><span class="hljs-built_in">mkdir</span> bbb <br></code></pre>
+
+<p>显示当前路径的所有文件</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs dos"><span class="hljs-built_in">dir</span> <br></code></pre>
+
+<p>显示当前路径的所有文件</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs ebnf"><span class="hljs-attribute">ls</span> <br></code></pre>
+
+<p>清空所有代码 clear还可以滑上去</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs gauss"><span class="hljs-keyword">cls</span><br><span class="hljs-keyword">clear</span> <br></code></pre>
+
+<hr>
+
+
+
+<h2 id="git-命令">git 命令</h2>
+
+
+
+<h3 id="告诉git你是谁">告诉git你是谁</h3>
+
+<p>设置用户配置信息</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-javascript hljs">git config --list 查看配置<br>git config --global user.name 用户名<br>git config --global user.email 邮箱<br></code></pre>
+
+
+
+<h3 id="创建目录文件夹">创建目录/文件夹</h3>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-javascript hljs">mkdir test-git<br>&lt;s&gt;文件名可以Tab补全&lt;<span class="hljs-regexp">/s&gt;</span><br></code></pre>
+
+
+
+<h3 id="cd-进入目录">cd 进入目录</h3>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-javascript hljs">cd 加目录名<br>mkdir test-git &amp;&amp; cd test-git<br></code></pre>
+
+
+
+<h3 id="初始化git仓库">初始化git仓库</h3>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-javascript hljs">git init (初始化)<br>ls -al 查看所有文件 包括隐藏文件<br></code></pre>
+
+
+
+<h3 id="创建文件">创建文件</h3>
+
+<p>可以创建特殊文件</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-javascript hljs">touch index.txt<br></code></pre>
+
+
+
+<h3 id="查看文件内容">查看文件内容</h3>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs stylus">cat index<span class="hljs-selector-class">.txt</span> <br></code></pre>
+
+
+
+<h3 id="vi常用命令">vi常用命令</h3>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs stylus">vi index<span class="hljs-selector-class">.txt</span> 编辑文件<br></code></pre>
+
+<p><code>i</code>进入插入模式 <br>
+<code>esc</code>退出编辑模式  <br>
+<code>:w</code>保存  <br>
+<code>:q</code>退出  <br>
+<code>:!q</code>强制退出</p>
+
+
+
+<h3 id="查看git状态">查看git状态</h3>
+
+<ul><li>红色表示没有在暂存区中</li>
+<li>绿色标识在暂存区中</li>
+</ul>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-javascript hljs">git status <br></code></pre>
+
+
+
+<h3 id="加入暂存区">加入暂存区</h3>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-javascript hljs">git add 文件名 <br>git add .<br>git add -A<br></code></pre>
+
+
+
+<h3 id="加入历史区">加入历史区</h3>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-javascript hljs">git commit -m <span class="hljs-string">""</span> <br></code></pre>
+
+
+
+<h3 id="查看历史日志">查看历史/日志</h3>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-javascript hljs">git log <br>git log --oneline 简洁<br></code></pre>
+
+
+
+<h3 id="webstorm破解码">webstorm破解码</h3>
+
+<p><a href="http://idea.iteblog.com/key.php" target="_blank">http://idea.iteblog.com/key.php</a></p>
+
+
+
+<h3 id="git-diff">git diff</h3>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-javascript hljs">git diff 默认工作区和暂存区比较<br>git diff --cached 比较暂存区和历史区不同<br>git diff master 比较工作区和历史区 后面是分支名<br></code></pre>
+
+
+
+<h3 id="从暂存区中覆盖掉工作区">从暂存区中覆盖掉工作区</h3>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs erlang">git checkout 文件名<br>git checkout .<br></code></pre>
+
+
+
+<h3 id="从历史区中覆盖掉工作区">从历史区中覆盖掉工作区</h3>
+
+<p>选择某个版本进行回滚操作</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-javascript hljs">git reset --hard 版本id<br></code></pre>
+
+
+
+<h3 id="查看所有历史版本日志">查看所有历史版本/日志</h3>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-javascript hljs">git reflog<br></code></pre>
+
+
+
+<h3 id="创建gitignore必须在add之前创建">创建gitignore必须在add之前创建</h3>
+
+<p><code>.gitignore</code> 创建一个<em>忽略上传文件</em>的集合</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs css"><span class="hljs-selector-class">.idea</span><br><span class="hljs-selector-tag">node_modules</span><br><span class="hljs-selector-class">.DS_Store</span><br></code></pre>
+
+
+
+<h3 id="删除上一次添加暂存区的内容">删除上一次添加暂存区的内容</h3>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-javascript hljs">git reset HEAD 文件名<br></code></pre>
+
+<hr>
+
+<h3 id="分支">分支</h3>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-javascript hljs">git branch (查看分支)<br>git branch 分支名 (建立分支)<br>创建的分支和master一样<br>git branch -D 删除分支<br></code></pre>
+
+
+
+<h3 id="创建并切换分支">创建并切换分支</h3>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs excel">git checkout -b dev<br>=&gt;<br>git branch dev<br>git checkout dev<br></code></pre>
+
+
+
+<h3 id="将内容提交到某个分支上">将内容提交到某个分支上</h3>
+
+<p>默认我们的代码是放在工作区上，不属于任何分支，只有提交到某个分支上，此文件才归属于特定的分支</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs irpf90"><span class="hljs-keyword">touch</span> <span class="hljs-built_in">index</span>.js<br></code></pre>
+
+
+
+<h4 id="fast-forward">fast-forward</h4>
+
+<ul><li>主干没有任何更新</li>
+<li>分支提交了新的代码 <br>
+
+
+<blockquote>
+  将主干的指针快速指向到分支最新的代码即可</blockquote></li>
+  </ul>
+  
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs q">git merge <span class="hljs-built_in">dev</span><br>git branch -D <span class="hljs-built_in">dev</span>   删除<span class="hljs-built_in">dev</span>分支<br></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+<h3 id="支持提交过的文件-可以一步到位">支持提交过的文件 可以一步到位</h3>
+
+
+
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs stylus">git commit -<span class="hljs-selector-tag">a</span> -m<span class="hljs-string">"add hello"</span><br></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+<h4 id="conflict">conflict</h4>
+
+<ul><li>合并多个分支时可能合并的内容会产生冲突</li>
+<li>手动解决冲突,提交最新结果</li>
+</ul>
+
+
+
+<h3 id="创建有内容的文件">创建有内容的文件</h3>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">"# 201702nide"</span> &gt; README.md<br></code></pre>
+
+
+
+<h2 id="部署静态页面">部署静态页面</h2>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs gams">&gt;<span class="hljs-symbol">$</span> git init<br>&gt;<span class="hljs-symbol">$</span> touch index.html<br>&gt;<span class="hljs-symbol">$</span> vi index.html<br>&gt;<span class="hljs-symbol">$</span> git checkout -b gh-pages<br>&gt;<span class="hljs-symbol">$</span> git pull origin https:<span class="hljs-comment">//github.com/gggoe/iphone.git</span><br>&gt; git clone origin https:<span class="hljs-comment">//github.com/gggoe/iphone.git</span><br>&gt; <span class="hljs-symbol">$</span> git remote add origin https:<span class="hljs-comment">//github.com/gggoe/iphone.git</span><br>&gt; <span class="hljs-symbol">$</span> git add .<br>&gt; <span class="hljs-symbol">$</span> git commit -m <span class="hljs-string">"第一次修改"</span><br>&gt; <span class="hljs-symbol">$</span> git push origin gh-pages<br></code></pre>
+
+<hr>
+
+
+
+<h3 id="提交到远程仓库">提交到远程仓库</h3>
+
+<h4 id="建立文件">建立文件</h4>
+
+<ul><li>README.md</li>
+<li>.gitignore</li>
+</ul>
+
+<h4 id="提交到历史区">提交到历史区</h4>
+
+<ul><li>git add</li>
+<li>git commit -m ‘信息’</li>
+</ul>
+
+<h3 id="查看远程仓库">查看远程仓库</h3>
+
+<pre class="prettyprint hljs-dark"><code class="hljs crmsh">git remote -v<br>git remote add 地址的别名 地址<br>git push origin <span class="hljs-keyword">master</span> <span class="hljs-title">将master</span>推送到origin上<br></code></pre>
+
+
+
+<h3 id="本地和线上版本不一致">本地和线上版本不一致</h3>
+
+<ul><li>线上比线下的版本新</li>
+<li>线上和线下两个版本都不一致</li>
+</ul>
+
+<h3 id="拉取最代码">拉取最代码</h3>
+
+<ul><li>将线上最新代码拉取到master分支上</li>
+</ul>
+
+<pre class="prettyprint hljs-dark"><code class="hljs crmsh">git pull origin <span class="hljs-keyword">master</span> <span class="hljs-title">获取最新代码</span><br></code></pre>
+
+
+
+<h3 id="部署git静态网页">部署git静态网页</h3>
+
+<ul><li>将网页通过git网址访问（只能放静态页，不能放置server）</li>
+</ul>
+
+<h4 id="第一步">第一步</h4>
+
+<ul><li>需要一个特定的分支（gh-pages）</li>
+</ul>
+
+<pre class="prettyprint hljs-dark"><code class="hljs stylus">git checkout -<span class="hljs-selector-tag">b</span> gh-pages<br></code></pre>
+
+<ul><li>将代码提交到这个分支上</li>
+</ul>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs clean">git add ```<br>git commit -m<span class="hljs-string">'static'</span><br></code></pre>
+
+<ul><li>建立本地和远程的链接</li>
+</ul>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs dockerfile">git remote <span class="hljs-keyword">add</span><span class="bash"> 别名 地址</span><br></code></pre>
+
+<ul><li>推送到github上,将gh-pages提交到这个分支上</li>
+</ul>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs maxima">git <span class="hljs-built_in">push</span> <span class="hljs-built_in">origin</span> gh-pages<br></code></pre>
+
+<ul><li>在github中的setting上可以找到这个网址</li>
+</ul>
+
+
+
+<h3 id="代码合并请求管理提交的笔记">代码合并请求管理提交的笔记</h3>
+
+<h4 id="fork">fork</h4>
+
+<ul><li>叉子，将别人的代码当前的状态，克隆一份放到自己的仓库上，一个项目只能fork一次，我的代码更新不会导致你的项目更新</li>
+</ul>
+
+<h4 id="clone">clone</h4>
+
+<ul><li>克隆是将线上的项目拉取到本地，拉下来后就是git仓库，而且已经添加好了远程仓库地址</li>
+</ul>
+
+<pre class="prettyprint hljs-dark"><code class="hljs crmsh">git <span class="hljs-keyword">clone</span> <span class="hljs-title">地址 文件夹名字</span><br></code></pre>
+
+
+
+<h3 id="组长提交信息">组长提交信息</h3>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs crmsh">git <span class="hljs-keyword">clone</span> <span class="hljs-title">自己的项目地址<br>添加内容<br>git</span> add .<br>git commit -m 'team xxx'<br>git push origin <span class="hljs-literal">master</span><br></code></pre>
+
+
+
+<h3 id="组员给提交给自己">组员给提交给自己</h3>
+
+<pre class="prettyprint hljs-dark"><code class="hljs crmsh">git <span class="hljs-keyword">clone</span> <span class="hljs-title">自己的项目地址<br>添加内容<br>git</span> add .<br>git commit -m 'team xxx'<br>git remote add leader 组长的地址（建立一次即可）<br>git pull leader <span class="hljs-keyword">master</span><br><span class="hljs-title">git</span> push origin <span class="hljs-literal">master</span><br></code></pre>
+
+
+
+<h3 id="组长再次提交给老师">组长再次提交给老师</h3>
+
+<pre class="prettyprint hljs-dark"><code class="hljs dockerfile">将自己的内容放进去<br>git <span class="hljs-keyword">add</span><span class="bash"> .<br></span>git commit -m <span class="hljs-string">'team xxx'</span><br>git remote <span class="hljs-keyword">add</span><span class="bash"> teacher https://github.com/zhufengzhufeng/2017node02_homework<br></span>git pull teacher master<br>git push origin master<br></code></pre>
+
+<hr>
+
+<h4 id="插件链接">插件链接</h4>
+
+<p><a href="http://ohmyz.sh/" target="_blank">oh my zsh</a></p>
+
+<p><a href="http://www.iterm2.com/documentation.html" target="_blank">item2</a></p>
+
+<p><a href="https://brew.sh/index_zh-cn.html" target="_blank">Homebrew</a>:macOS 缺失的软件包管理器</p>
+
+<pre class="prettyprint hljs-dark"><code class="hljs mipsasm"><span class="hljs-keyword">brew </span><span class="hljs-keyword">install </span>git<br></code></pre>
+
+<div class="bom">笔记来自 <a href="https://github.com/gggoe" target="_blank"> gggoe </a> 整理</div></div></body></html>

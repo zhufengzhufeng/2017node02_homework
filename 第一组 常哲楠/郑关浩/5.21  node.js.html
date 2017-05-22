@@ -1,0 +1,55 @@
+<!DOCTYPE html><html><head><title>5.21  node.js</title><meta charset='utf-8'><link href='https://dn-maxiang.qbox.me/res-min/themes/marxico.css' rel='stylesheet'><style>
+.note-content  {font-family: 'Helvetica Neue', Arial, 'Hiragino Sans GB', STHeiti, 'Microsoft YaHei', 'WenQuanYi Micro Hei', SimSun, Song, sans-serif;}
+
+</style></head><body><div id='preview-contents' class='note-content'>
+                        
+                    
+
+
+
+<h1 id="521-nodejs">5.21  node.js</h1>
+
+<h2 id="有callback的方法都是异步">有callBack的方法都是异步</h2>
+
+<h3 id="global">global</h3>
+
+<ul><li>http-server</li>
+</ul>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs sql"><span class="hljs-comment line-number">1.</span>帮用户启动一个服务，返回静态文件<br><span class="hljs-comment line-number">2.</span>npm <span class="hljs-keyword">install</span> <span class="hljs-keyword">http</span>-<span class="hljs-keyword">server</span> -g<br><span class="hljs-comment line-number">3.</span>在想要访问的文件夹下启动服务<br><span class="hljs-comment line-number">4.</span><span class="hljs-keyword">http</span>-<span class="hljs-keyword">server</span> -p<br></code></pre>
+
+<p>commonjs规范 (模块)</p>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs haml"><span class="hljs-comment line-number">1.</span>1.如何使用模块<br><span class="hljs-comment line-number">2.</span>-<span class="ruby"> 文件模块 引用时需要相对路径引用 <br><span class="hljs-comment line-number">3.</span></span>-<span class="ruby"> 第三方模块 写模块名即可<br><span class="hljs-comment line-number">4.</span></span>    -<span class="ruby"> 全局的第三方模块 加了 -g 只能在命令行下使用<br><span class="hljs-comment line-number">5.</span></span>        -<span class="ruby"> nrm 模块 默认下载模块通过的是npm 下载，切换到国内 cnpm taobao<br><span class="hljs-comment line-number">6.</span></span>        -<span class="ruby"> (sudo) npm install nrm -g 安装后就会拥有全局命令nrm<br><span class="hljs-comment line-number">7.</span></span>        -<span class="ruby"> nrm ls 列出所有可用源 nrm test 测试源的网速<br><span class="hljs-comment line-number">8.</span></span>        -<span class="ruby"> nrm use 用哪个源<br><span class="hljs-comment line-number">9.</span></span><br><span class="hljs-comment line-number">10.</span>        -<span class="ruby"> http-server 启动服务的，可以用于调试<br><span class="hljs-comment line-number">11.</span></span>        -<span class="ruby"> 帮用户启动一个服务，返回静态文件<br><span class="hljs-comment line-number">12.</span></span>        `npm install http-server -g`<br><span class="hljs-comment line-number">13.</span>        -<span class="ruby"> 在想要访问的文件夹下启动服务<br><span class="hljs-comment line-number">14.</span></span>        `http-server -p 3000`<br><span class="hljs-comment line-number">15.</span><br><span class="hljs-comment line-number">16.</span>        -<span class="ruby"> nodeppt 模块 <br><span class="hljs-comment line-number">17.</span></span>    -<span class="ruby"> 本地第三方 在当前文件夹下使用<br><span class="hljs-comment line-number">18.</span></span>        -<span class="ruby"> 开发依赖 --sav-dev或者-D 只是开发时使用 例如mime<br><span class="hljs-comment line-number">19.</span></span>        -<span class="ruby"> 安装之前 需要初始化prckage.json <br><span class="hljs-comment line-number">20.</span></span>        `npm init` `npm init -y`一路 yes 全部确定<br><span class="hljs-comment line-number">21.</span>            -<span class="ruby"> 初始化时不能有汉字不能用特殊符，而且也不能叫下载的模块，不能自己安装自己<br><span class="hljs-comment line-number">22.</span></span>            -<span class="ruby"> 如果外层文件有node_modules会向上安装<br><span class="hljs-comment line-number">23.</span></span>        -<span class="ruby"> 开发依赖 --sav-dev或者-D 只是开发时使用 例如mime<br><span class="hljs-comment line-number">24.</span></span>-<span class="ruby"> 核心模块 内置模块<br><span class="hljs-comment line-number">25.</span></span>-<span class="ruby"> node自带的模块，fs,http,url...<br><span class="hljs-comment line-number">26.</span></span>-<span class="ruby"> util工具包node自带的工具包  继承inherits</span><br></code></pre>
+
+<h3 id="继承">继承</h3>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs elm"><span class="hljs-comment line-number">1.</span><span class="hljs-number">1.</span>call继承  只继承私有<br><span class="hljs-comment line-number">2.</span><span class="hljs-number">2.</span>new <span class="hljs-type">Parent</span> 不能传递参数  私有和公有都继承<br><span class="hljs-comment line-number">3.</span><span class="hljs-number">3.</span>child.proto<span class="hljs-keyword">type</span>.__proto__=<span class="hljs-type">Parent</span>.prototype;  继承公有<br><span class="hljs-comment line-number">4.</span><span class="hljs-number">4.</span>child.proto<span class="hljs-keyword">type</span>=<span class="hljs-type">Object</span>.create(<span class="hljs-type">Parent</span>.prototype); 继承公有  es5的<br><span class="hljs-comment line-number">5.</span><span class="hljs-number">5.</span>继承公有  <span class="hljs-type">Object</span>.setPrototypeOf()  es6的<br></code></pre>
+
+<ul><li>util</li>
+</ul>
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs lasso"><span class="hljs-comment line-number">1.</span><span class="hljs-keyword">let</span> util=<span class="hljs-keyword">require</span>(<span class="hljs-string">'util'</span>);<br><span class="hljs-comment line-number">2.</span>util.inherits(child,<span class="hljs-keyword">parent</span>);只继承公有属性<br></code></pre>
+
+<ul><li>events node 自带一个事件库</li>
+<li>发布订阅模式 <br>
+<ul>
+<li>发布订阅，最常见的的两个方法  on  emit</li>
+<li>发布订阅模式，订阅代表的就是一对多的关系，发布，就是当事件触发的时候，执行所有的事情</li></ul></li>
+</ul>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs javascript"><span class="hljs-comment line-number">1.</span><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Girl</span>(<span class="hljs-params"></span>) </span>{<br><span class="hljs-comment line-number">2.</span>    <span class="hljs-keyword">this</span>._events={};<br><span class="hljs-comment line-number">3.</span>}<br><span class="hljs-comment line-number">4.</span>Girl.prototype.on=<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">eventName,callBack</span>) </span>{<br><span class="hljs-comment line-number">5.</span>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>._events[eventName]){<br><span class="hljs-comment line-number">6.</span>        <span class="hljs-keyword">this</span>._events[eventName].push(callBack);<br><span class="hljs-comment line-number">7.</span>    }<span class="hljs-keyword">else</span> {<br><span class="hljs-comment line-number">8.</span>        <span class="hljs-keyword">this</span>._events[eventName]=[callBack];<br><span class="hljs-comment line-number">9.</span>    }<br><span class="hljs-comment line-number">10.</span>};<br><span class="hljs-comment line-number">11.</span>Girl.prototype.emit=<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">eventName</span>) </span>{<br><span class="hljs-comment line-number">12.</span>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>._events[eventName]){<br><span class="hljs-comment line-number">13.</span>        <span class="hljs-keyword">this</span>._events[eventName].forEach( <span class="hljs-function"><span class="hljs-params">item</span>=&gt;</span>{<br><span class="hljs-comment line-number">14.</span>            item();<br><span class="hljs-comment line-number">15.</span>        })<br><span class="hljs-comment line-number">16.</span>    }<br><span class="hljs-comment line-number">17.</span>};<br><span class="hljs-comment line-number">18.</span><span class="hljs-keyword">let</span> girl=<span class="hljs-keyword">new</span> Girl();<br><span class="hljs-comment line-number">19.</span><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">cry</span>(<span class="hljs-params"></span>) </span>{<br><span class="hljs-comment line-number">20.</span>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'大哭'</span>)<br><span class="hljs-comment line-number">21.</span>}<br><span class="hljs-comment line-number">22.</span><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">eat</span>(<span class="hljs-params"></span>) </span>{<br><span class="hljs-comment line-number">23.</span>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'吃'</span>)<br><span class="hljs-comment line-number">24.</span>}<br><span class="hljs-comment line-number">25.</span><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">shopping</span>(<span class="hljs-params"></span>) </span>{<br><span class="hljs-comment line-number">26.</span>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'购物'</span>)<br><span class="hljs-comment line-number">27.</span>}<br><span class="hljs-comment line-number">28.</span>girl.on(<span class="hljs-string">'女孩失恋了'</span>,cry);<br><span class="hljs-comment line-number">29.</span>girl.on(<span class="hljs-string">'女孩失恋了'</span>,eat);<br><span class="hljs-comment line-number">30.</span>girl.on(<span class="hljs-string">'女孩失恋了'</span>,shopping);<br><span class="hljs-comment line-number">31.</span>girl.emit(<span class="hljs-string">'女孩失恋了'</span>);<br></code></pre>
+
+<h2 id="搭建静态博客hexo">搭建静态博客hexo</h2>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs lsl"><span class="hljs-comment line-number">1.</span><span class="hljs-number">1.</span>安装hexo模块<br><span class="hljs-comment line-number">2.</span>npm install hexo-cli -g<br><span class="hljs-comment line-number">3.</span><span class="hljs-number">2.</span>生成博客项目<br><span class="hljs-comment line-number">4.</span>hexo init blog<br><span class="hljs-comment line-number">5.</span><span class="hljs-number">3.</span>进入目录安装依赖<br><span class="hljs-comment line-number">6.</span>cd blog&amp;&amp;npm install<br><span class="hljs-comment line-number">7.</span><span class="hljs-number">4.</span>启动服务<br><span class="hljs-comment line-number">8.</span>hexo server<br></code></pre></div></body></html>

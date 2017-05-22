@@ -1,0 +1,74 @@
+<!DOCTYPE html><html><head><title>5.20   git</title><meta charset='utf-8'><link href='https://dn-maxiang.qbox.me/res-min/themes/marxico.css' rel='stylesheet'><style>
+.note-content  {font-family: 'Helvetica Neue', Arial, 'Hiragino Sans GB', STHeiti, 'Microsoft YaHei', 'WenQuanYi Micro Hei', SimSun, Song, sans-serif;}
+
+</style></head><body><div id='preview-contents' class='note-content'>
+                        
+                    
+
+
+
+<h1 id="520-git">5.20   git</h1>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs sql"><span class="hljs-comment line-number">1.</span>配置git用户和邮箱<br><span class="hljs-comment line-number">2.</span>git config <span class="hljs-comment">--global user.name "你的github用户名"</span><br><span class="hljs-comment line-number">3.</span>git config <span class="hljs-comment">--global user.email "你的github邮箱"</span><br><span class="hljs-comment line-number">4.</span>输入git init命令把当前这个目录变成git可以管理的仓库<br><span class="hljs-comment line-number">5.</span>通过 ls -al 查看所有文件<br><span class="hljs-comment line-number">6.</span>git add .   添加到暂存区<br><span class="hljs-comment line-number">7.</span>git <span class="hljs-keyword">commit</span> -m <span class="hljs-string">"注释内容"</span>  添加到历史区<br><span class="hljs-comment line-number">8.</span>git <span class="hljs-keyword">log</span>  查看历史状态<br><span class="hljs-comment line-number">9.</span>git diff 比较工作区和暂存区的不同<br><span class="hljs-comment line-number">10.</span>git checkout <span class="hljs-string">"文件名"</span>  从暂存区覆盖工作区内容<br><span class="hljs-comment line-number">11.</span>git <span class="hljs-keyword">reset</span> <span class="hljs-comment">--hard id  从历史区覆盖工作区（id最少7位数）</span><br><span class="hljs-comment line-number">12.</span>git reflog  查看所有历史版本<br><span class="hljs-comment line-number">13.</span>git <span class="hljs-keyword">reset</span> <span class="hljs-keyword">HEAD</span> <span class="hljs-string">"文件名"</span>   删除上一次添加到暂存区的内容<br></code></pre>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs stylus"><span class="hljs-comment line-number">1.</span>分支<br><span class="hljs-comment line-number">2.</span>git branch<br><span class="hljs-comment line-number">3.</span>git branch 创建分支<br><span class="hljs-comment line-number">4.</span>git checkout <span class="hljs-selector-tag">a</span><br><span class="hljs-comment line-number">5.</span>git checkout -<span class="hljs-selector-tag">b</span> c切换分支<br><span class="hljs-comment line-number">6.</span>在master  git merge<br><span class="hljs-comment line-number">7.</span>git checkout <span class="hljs-selector-tag">b</span><br><span class="hljs-comment line-number">8.</span>git branch --merged 合并了哪些分支<br><span class="hljs-comment line-number">9.</span>git branch --no-merged 合并了哪些分支<br><span class="hljs-comment line-number">10.</span>git branch -d <span class="hljs-selector-tag">a</span> 删除分支<br><span class="hljs-comment line-number">11.</span>git branch -D <span class="hljs-selector-tag">a</span> 删除分支<br><span class="hljs-comment line-number">12.</span>git checkout -<span class="hljs-selector-tag">b</span> 分支名   创建并切换<br><span class="hljs-comment line-number">13.</span>默认我们的代码是放在工作区上，不属于任何分支，只有提交到某个分支上，此文件才归属于某个分支<br></code></pre>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs crmsh"><span class="hljs-comment line-number">1.</span>合并分支<br><span class="hljs-comment line-number">2.</span>git merge <span class="hljs-string">"分支名"</span>  合并<br><span class="hljs-comment line-number">3.</span>合并多个分支时可能合并的内容会产生冲突，手动解决冲突，再提交最新结果<br><span class="hljs-comment line-number">4.</span>git pull origin <span class="hljs-keyword">master</span>  <span class="hljs-title">获取最新代码</span><br></code></pre>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs haml"><span class="hljs-comment line-number">1.</span>部署git静态网页<br><span class="hljs-comment line-number">2.</span>-<span class="ruby"> 将网页通过git网址访问（只能放静态页，不能放置server）<br><span class="hljs-comment line-number">3.</span></span>-<span class="ruby"> <span class="hljs-number">1</span>.需要一个特定的分支（gh-pages）<br><span class="hljs-comment line-number">4.</span></span>-<span class="ruby"> git checkout -b gh-pages<br><span class="hljs-comment line-number">5.</span></span>-<span class="ruby"> 将代码提交到这个分支上<br><span class="hljs-comment line-number">6.</span></span>-<span class="ruby"> git add.<br><span class="hljs-comment line-number">7.</span></span>-<span class="ruby"> git commit -m <span class="hljs-string">""</span><br><span class="hljs-comment line-number">8.</span></span>-<span class="ruby"> 建立本地和远程的链接<br><span class="hljs-comment line-number">9.</span></span>-<span class="ruby"> git remote add origin 地址<br><span class="hljs-comment line-number">10.</span></span>-<span class="ruby"> 推送到github上<br><span class="hljs-comment line-number">11.</span></span>-<span class="ruby"> git push origin gh-pages<br><span class="hljs-comment line-number">12.</span></span>-<span class="ruby"> 在github中的setting上可以找到这个网址</span><br></code></pre>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs markdown"><span class="hljs-comment line-number">1.</span>fork<br><span class="hljs-comment line-number">2.</span><span class="hljs-bullet">- </span>叉子 将别人的代码当前的状态，克隆一份放到自己的仓库上，一个项目只能fork一次，代码更新之间不会影响<br><span class="hljs-comment line-number">3.</span><span class="hljs-bullet">- </span>克隆  是将线上的项目拉取到本地，拉下来后就是git仓库，而且已经添加了远程仓库地址<br><span class="hljs-comment line-number">4.</span>1.打开组长git地址，点击fork；<br><span class="hljs-comment line-number">5.</span>2.当看到名字变成自己的名字后，说明fork成功![<span class="hljs-string">Alt text</span>](<span class="hljs-link">./1495270335578.png</span>)<br><span class="hljs-comment line-number">6.</span>3.复制地址<br><span class="hljs-comment line-number">7.</span>4.在本地打开git bash ，<span class="hljs-code">`git clone 地址`</span>可以在地址前起别名，也可以不起，不起的话，默认文件夹名称是组长的仓库的名称<br><span class="hljs-comment line-number">8.</span>5.<span class="hljs-code">`git add .`</span>添加文件<br><span class="hljs-comment line-number">9.</span>6.<span class="hljs-code">`git commit -m"""`</span><br><span class="hljs-comment line-number">10.</span>7.<span class="hljs-code">`git remote add gropu-leader 组长地址`</span>gropu-leader是起的别名<br><span class="hljs-comment line-number">11.</span>8.<span class="hljs-code">`git pull  gropu-leader master`</span><br><span class="hljs-comment line-number">12.</span>9.<span class="hljs-code">`git push origin master`</span>推送到自己仓库<br></code></pre>
+
+
+
+<h3 id="node是什么">node是什么？</h3>
+
+<ul><li>服务端运行js的环境，服务端语言</li>
+</ul>
+
+
+
+<h3 id="前端的模块化">前端的模块化</h3>
+
+<ul><li>闭包</li>
+<li>单例：不能完全解决命名冲突</li>
+<li>requirejs (AMD) 依赖前置  seajs(CMD)就近依赖</li>
+<li>commonjs  规范，是node模块的实现  module.exprots</li>
+</ul>
+
+
+
+<h3 id="node特点">node特点</h3>
+
+<ul><li>异步io  (定时器。回调函数)</li>
+<li>单线程(其他语言多线程)     多线程实现就是切换执行上下文</li>
+<li>进程是包含线程的，node一个进程只能开一个线程</li>
+</ul>
+
+
+
+<h3 id="如何解决异步问题">如何解决异步问题</h3>
+
+<ul><li>当我们调用一个异步方法时，传入后续的逻辑的函数，作为参数  (回调函数)</li>
+</ul>
+
+
+
+<h3 id="事件环">事件环</h3>
+
+<ul><li>靠事件驱动的</li>
+</ul>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs livescript"><span class="hljs-comment line-number">1.</span>前端的全局变量是<span class="hljs-built_in">window</span>，服务端是<span class="hljs-built_in">global</span><br><span class="hljs-comment line-number">2.</span>全局对象，在当前文件夹下可以直接使用的都是全局对象<br><span class="hljs-comment line-number">3.</span>全局对象 <span class="hljs-built_in">global</span>上的属性+五个特殊的形参<br><span class="hljs-comment line-number">4.</span>node中没有<span class="hljs-built_in">window</span>属性<br><span class="hljs-comment line-number">5.</span>定时器中的<span class="hljs-keyword">this</span>是定时器自己<br><span class="hljs-comment line-number">6.</span>闭包中的<span class="hljs-keyword">this</span>才是<span class="hljs-built_in">global</span><br><span class="hljs-comment line-number">7.</span><span class="hljs-keyword">var</span> 不能直接将内容挂载在<span class="hljs-built_in">global</span>上<br></code></pre></div></body></html>
