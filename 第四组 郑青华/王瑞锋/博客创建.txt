@@ -1,0 +1,74 @@
+搭建静态博客 hexo   			
+PS：以下命令要在电脑自带的   cmd 那你边写
+
+1.安装hexo模块
+npm install hexo-cli -g
+
+2.生成博客项目
+hexo init blog
+
+3.进入目录安装依赖
+cd blog && npm install
+
+4.启动服务
+hexo server 
+
+二：部署到github 上
+1.一个账号只能部署一个，名字必须叫 用户名.github.io
+	新建一个仓库，名字必须是 用户名.github.io 以后访问就是这个名字
+
+2.发布github需要一个发布到github的插件
+npm install hexo-deployer-git --save
+
+三：配置发布文件	
+(注意：格式必须是以下格式，包括空格，tab键；从第二行开始，每行第一个单词前空一个tab键，第二个单词前空一个空格。在新版本下如果在前面写username:password@，那么下次就不用输用户名和密码（旧版本下）)
+在blog内 的_config.yml 文件夹下 在后边找到 以下相似的，改为以下的
+
+deploy:
+  type: git
+  repo: https://username:password@github.com/zuyuan/zuyuan.github.io.git
+  branch: master
+
+四：发布
+当前目录下，每次更新都需要执行这两步
+
+hexo g    生成
+
+hexo d    发布
+
+
+
+如果想改主题： （自己自愿）
+1.在官网主题里自己搜主题，点击那个名字，就会跳掉一个githup里边，复制地址。
+
+2.在自己的blog文件中 ->themes文件夹内输入
+
+git clone +自己复制的那个地址
+
+3.在blog内 的_config.yml 文件夹下 找到在后边找到  theme,  把后面的属性值改为自己下载的那个文件的名称
+
+4.重复执行上边的第四大 步骤
+
+
+最后访问的时候输入自己那个仓库的地址就ok了。
+
+
+
+
+如果想在博客里边写内容，在blog文件夹下，source文件夹下的posts文件夹里有 .md文件，在里边写内容，格式和马克飞象里的一样，把标题以外的删除，title的内容换成自己的标题
+（注意：格式只能是.md格式，别的不支持，可以建立多个.md文件放不同的内容）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
