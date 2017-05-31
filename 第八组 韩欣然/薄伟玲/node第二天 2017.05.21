@@ -1,0 +1,295 @@
+###node
+####配置环境变量
+```
+- node可以在命令行下执行的原因
+- 将可执行文件配置到了环境变量下
+```
+> 系统->属性->高级系统设置->环境变量->path->新增即可
+```
+node是什么？
+服务端运行js的环境，服务端语言
+```
+####前端的模块化：
+```
+- 闭包
+- 单例(有且只有一份): 不能完全解决命名冲突，调用时代码过长
+- requirejs(AMD)依赖前置 seajs(CMD)就近依赖
+- commonjs 规范，是node模块的实现 module.exports
+```
+#### node特点
+```
+- 异步io （定时器,回调函数）
+- 单线程(其他语言多线程) 多线程实现就是切换执行上下文(速度很快感觉不出来，好像在干很多件事)
+- 进程是包含线程的，node一个进程只能开一个线程
+```
+#### 事件环 
+```
+- 靠事件驱动的
+```
+###服务端global
+```
+- 前端的全局变量 是window 服务端是global
+- 全局对象，在当前文件夹下可以直接使用的都是全局对象
+- 全局对象 global上的属性 + 五个特殊的形参
+- node中没有window属性
+- var 不能直接将内容挂载在global上
+- 闭包中的this才是global
+(global);
+> process 进程 process.env.xxx process.pid process.kill
+>  Buffer 缓冲区
+>  clearImmediate: [Function], 清除立即
+>  clearInterval: [Function],
+>  clearTimeout: [Function],
+>  setImmediate: [Function],
+>  setInterval: [Function],
+>  setTimeout: [Function],
+```
+####time timeEnd可以计算时间差
+```
+1.console time timeEnd可以计算时间差
+console.time('start');
+for(let i = 0; i<100;i++){}
+console.timeEnd('start');
+```
+####setTimeout (this,bind ,箭头函数，剩余运算)
+```
+2.setTimeout (this代表的是定时器自己)
+1）改变this的方法
+ 1.改变函数中的this指向 (call,apply)会导致函数执行
+ 2.bind只能绑定一次
+ 3.vat that = this保存this指向
+ 4.使用箭头函数处理this，因为自己家没有this指向 从而解决了this问题
+2）传递参数 可以从第二个参数开始传递实参
+3）获取参数列表(将arguments转化成数组)
+ 1.[].slice.call(arguments,1);
+ 2.Array.from(arguments).slice(1);
+ 3.剩余运算 ...args 将其他参数转换成数组类型 （拓展 展开运算符） [...arr,...arr1]
+function eat(what,...args) { //arguments(实参的集合)
+    //获得除了第一个参数 后面的所有参数
+    let args = Array.from(arguments).slice(1);
+    console.log(args);
+    console.log(what);
+}
+setTimeout(eat,1000,'香蕉','苹果','橘子');
+```
+######查看被占用的端口号
+```
+netstate -anto |findstr "8080"查看被占用的端口
+ps -ef |grep node
+```
+###模块 
+#####1文件模块
+```
+> 1;node基于commonjs规范的
+> commonjs规范（模块）操作的是模块
+1）文件模块 引用时，需要相对路径 ./ ../
+```
+#####2第三方模块
+```
+2）第三方模块 写模块名即可
+- 全局第三方模块
+- 本地第三方模块
+```
+######全局的第三方模块
+```
+>全局的第三方模块，增加了-g只能在命令行下使用
+- nrm模块 默认下载模块通过的是npm下载，切换到国内
+- 1：npm install nrm -g
+- 2：nrm ls 列出所有可用源
+- 3：nrm test 测试源的网速
+- 4：nrm use 用哪个源
+
+> nodeppt模块
+-> http-server 启动服务，可以用来调试
+ - 帮用户启动一个服务，返回静态文件
+ - 1:npm install http-server -g
+ - 2:在想要的文件夹下启动服务
+ - http-server -p (3030端口号)
+->nodeppt
+  - 1:npm install nodeppt -g 全局安装
+  - 2:在想要执行的文件夹下，文件中包含slide 用makedown nodeppt sta
+```
+######本地第三方模块
+```
+> 本地第三方，在当前文件夹下使用
+ - 开发依赖 --save-dev/-D 只是开发使用 例如less babel webpack gulp
+ - 发布依赖 --save/-S 上线开发全需要例如mime
+ - 安装之前，需要初始化package.json
+ -- 1）如果外层文件有node_modules会向上安装
+ -- 2）初始化时，不能有汉字，不能有特殊符，而且也不能
+ - npm init -y 不用问我，直接默认信息  默认依赖
+ - npm uninstall 卸载模块
+```
+```
+> 发布包 多个模块组成一个包
+- 包必须要存在package.json文件
+- 1:npm init -y
+- 切换到npm上
+- 2:登陆或注册 npm addUser 输入用户名密码
+- 3：npm publish 发布包
+```
+
+#####3核心模块 内置模块
+```
+3）核心模块 内置模块  --node自带的模块 fs http url...
+> 1：util node自带的工具包 继承inherits
+- require('util')
+- util.inherits(儿子,父亲)继承他公有的属性
+- util.isArray([]) 检测他是不是一个数组类型
+
+> 2:events node 自带一个是事件库  发布订阅模式
+> 发布订阅最常见的两个方法 on emit
+> 发布就是当事情出发后，执行所有的事情
+> 订阅代表的是一对多的关系
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```
+#####发布订阅
+```
+多次触发，多次执行
+function Girl() {
+    this._events = {}
+}
+ 》 》》{'女孩失恋了':[cry,eat,shopping]} 发布《《《《《
+Girl.prototype.on = function (eventName,callback) {
+    if(this._events[eventName]){//第二次
+        this._events[eventName].push(callback);
+    }else{//第一次
+        this._events[eventName] = [callback];
+        //{'女孩失恋了':[cry]}
+    }
+};
+订阅
+Girl.prototype.emit = function (eventName) {
+    if(this._events[eventName]){
+        this._events[eventName].forEach(item=>{
+            item();
+        })
+    }
+};
+移除
+Girl.prototype.removeListenner=function(eventName,callback){
+if(this._events[eventName]){
+- filter 过滤返回新数组，如果函数中返回true 添加到新数组种，返回false 這项就不要
+this._event[eventName].filter(item=>{
+ return item!=callback 返回true留下 false删除
+})
+
+}
+}
+let girl = new Girl();
+function cry() {console.log('大哭');}
+function eat() {console.log('吃');}
+function shopping() {console.log('购物');}
+girl.on('女孩失恋了',cry);
+girl.on('女孩失恋了',eat);
+girl.on('女孩失恋了',shopping);
+girl.once('女孩失恋了',shopping);绑定一次 removeListener once删除一次
+
+girl.removeListener('女孩失恋了'，shopping)
+girl.emit('女孩失恋了'); //会让cry eat shopping依次执行
+```
+####使用   定义  导出模块
+```
+> 1：如何使用模块 require使用模块 require是同步的，如果有callback都是异步方法
+> 2：如何定义模块 在node中，一个js文件就是一个模块
+> 3：如何导出模块 exports module.expors 两个指向的都是同一个空间地址 
+- exports.a=a 如果使用exports 导出，必须要通过属性添加，否则无法挂载
+- module.expors=a 因为返回的是module.exports所以可以直接改变module.expors的指针
+- module.expors.a=a;
+注意：
+- 每个文件都是一个模块，模块化是通过闭包实现的
+- 非常重要的可以挂在在global上，一般不需要
+- 多次require不会多次导入，默认会缓存到require.cache這个对象中
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###process进程
+```
+> process.pid找到当前的进程id
+> process.kill(process.pid)杀死进程
+> process.exit();正常退出
+```
+####process.env
+```
+> process.env
+> 区分开发环境和上线环境  在电脑上设置变量
+> 判断条件一般是三等号，判断null和undefined
+> set NODE_EVN=development 在当前文件下面打开命令窗口输入這个
+if(process.env.NODE_EVN==='development'){
+    console.log('开发环境');
+}else {
+    console.log('线上环境');
+}
+> node +文件名 就会在出现开发环境 在当前文件下面打开命令窗口输入這个
+
+```
+####process.nextTick
+```
+> process.nextTick 下一队列 异步 nextTick跟setImmediate比较，nextTick他快
+process.nextTick(function(){
+    console.log('nextTick');
+});
+setImmediate(function(){
+    console.log('setImmediate');
+});
+> 重要的事情放在nextTick种，稍微不重要的setImmediate
+```
+###博客
+```
+>1) 搭建静态博客
+> 1：npm install hexo-cli -g
+> 2：hexo init blog 生成博客
+> 3：cd blog 进入目录
+> 4：npm install安装依赖
+> 5：hexo server 启动server
+
+>2) 部署到github上
+- 用户名github.io
+> 3)发布github需要一个发布到github的插件
+ - npm install hexo-deployer-git --save
+> 4) 
+_config.yml文件的最下面改一下這个
+ deploy:
+  type: git
+  repo: https://zuyuan:xy19921004@github.com/zuyuan/zuyuan.github.io.git
+  branch: master
+```
+#####yarn
+```
+安装yarn
+npm install yarn -g
+初始化package.json
+
+yarn init -y
+yarn add jquery vue 
+yarn add babel-core -dev
+
+```
